@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using TasksAPI.Modles;
 using TasksAPI.Services;
 
 namespace TasksAPI.Controllers
@@ -9,11 +8,11 @@ namespace TasksAPI.Controllers
     [ApiController]
     public class ToDosController : ControllerBase
     {
-        private ToDoServices _toDoServices; // Inside the class private property 
+        private IToDoRepository _toDoServices; // Inside the class private property 
 
-        public ToDosController()
+        public ToDosController(IToDoRepository repository)
         {
-            _toDoServices = new ToDoServices();
+            _toDoServices = repository;
         }
 
         [HttpGet("{id?}")]
